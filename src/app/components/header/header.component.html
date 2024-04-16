@@ -1,1 +1,6 @@
 <span>Click counter: {{ heroPolygonService.clickCounter$ | async }}</span>
+
+<aside class="menu-container" [ngClass]="{ hidden: !menuService.showMenu() }">
+  <button class="menu-container__button" aria-label="open menu" role="switch" [attr.aria-pressed]="!menuService.showMenu()" (click)="toggleMenu()">Press me</button>
+  <clicker-menu></clicker-menu>
+</aside>

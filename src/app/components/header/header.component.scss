@@ -1,7 +1,26 @@
+$menu-width: 380px;
+$menu-button-width: 60px;
+
 :host {
   display: flex;
   height: 100%;
   width: 100%;
   justify-content: center;
   align-items: center;
+  position: relative;
+
+  aside {
+    transition: transform ease 200ms;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: $menu-width;
+    background: red;
+    height: 100dvh;
+    transform: translateX(0);
+
+    &.hidden {
+      transform: translateX(calc($menu-width - $menu-button-width));
+    }
+  }
 }

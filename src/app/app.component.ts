@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { injectSpeedInsights } from '@vercel/speed-insights';
 
-import { HeaderComponent, HeroPolygonService } from './components';
+import { HeaderComponent, HeroPolygonService, MenuService } from './components';
 
 @Component({
   standalone: true,
   imports: [RouterModule, HeaderComponent],
-  providers: [HeroPolygonService],
+  providers: [HeroPolygonService, MenuService],
   selector: 'clicker-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
