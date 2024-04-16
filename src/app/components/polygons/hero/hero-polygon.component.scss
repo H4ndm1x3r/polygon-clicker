@@ -1,8 +1,18 @@
+$hero-size: 425px;
+
 :host {
   border-radius: 4px;
-  height: 50%;
-  width: 50%;
+  height: 100%;
+  width: 100%;
+  max-width: $hero-size;
+  max-height: $hero-size;
   margin: 0;
   padding: 0;
   background-color: #9C27B0;
+
+  @media (max-width: 425px) {
+    width: 50%;
+    height: auto;
+    padding: 50%;
+  }
 }
