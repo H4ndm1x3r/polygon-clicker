@@ -1,7 +1,7 @@
 @use "../src/assets/styles/_reset.scss";
 
-$header-height: 5vh;
-$footer-height: 5vh;
+$header-height: 5dvh;
+$footer-height: 5dvh;
 
 body {
   display: block;
@@ -20,5 +20,5 @@ footer {
 }
 
 main {
-  height: calc(100vh - ($footer-height + $header-height));
+  height: calc(100dvh - ($footer-height + $header-height));
 }
