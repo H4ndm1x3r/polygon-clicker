@@ -1,14 +1,15 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable, effect, inject, signal } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
-import { BehaviorSubject, debounceTime, first } from 'rxjs';
+import { MouseClickService } from '../../upgrades';
 
 const COOKIE_KEY = 'click-counter';
 
 @Injectable({ providedIn: 'root' })
 export class HeroPolygonService {
-  public readonly clickCounter$ = new BehaviorSubject(0);
+  public readonly accumulatedClicks = signal(0);
 
   private readonly cookieService = inject(CookieService);
+  private readonly mouseClickService = inject(MouseClickService)
   
   constructor() {
     const storedValue = this.cookieService.get(COOKIE_KEY);
@@ -17,16 +18,16 @@ export class HeroPolygonService {
       const parsedValue = parseInt(storedValue, 10);
 
       if (!isNaN(parsedValue)) {
-        this.clickCounter$.next(parsedValue);
+        this.accumulatedClicks.set(parsedValue);
       }
     }
 
-    this.clickCounter$.pipe(debounceTime(200)).subscribe((newClickCount) => {
-      this.cookieService.set(COOKIE_KEY, newClickCount.toString());
+    effect(() => {
+      this.cookieService.set(COOKIE_KEY, `${this.accumulatedClicks()}`);
     })
   }
 
   public incrementClick() {
-    this.clickCounter$.pipe(first()).subscribe((clickCount) => this.clickCounter$.next(clickCount + 1));
+    this.accumulatedClicks.update((accumulatedClicks) => accumulatedClicks + this.mouseClickService.value());
   }
 }

@@ -1,4 +1,4 @@
-<span>Click counter: {{ heroPolygonService.clickCounter$ | async }}</span>
+<span>Click counter: {{ heroPolygonService.accumulatedClicks() }}</span>
 
 <aside class="menu-container" [ngClass]="{ collapsed: !menuService.showMenu() }">
   <div class="menu-container__top">
