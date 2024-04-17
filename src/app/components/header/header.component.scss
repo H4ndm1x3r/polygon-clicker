@@ -1,5 +1,6 @@
 $menu-width: 380px;
-$menu-button-width: 60px;
+$menu-button-width: 32px;
+$menu-width-collapsed: 80px;
 
 :host {
   display: flex;
@@ -9,18 +10,41 @@ $menu-button-width: 60px;
   align-items: center;
   position: relative;
 
-  aside {
-    transition: transform ease 200ms;
+  .menu-container {
+    transition: width ease 200ms;
     position: absolute;
     top: 0;
     right: 0;
     width: $menu-width;
-    background: red;
+    background: #90A4AE;
     height: 100dvh;
-    transform: translateX(0);
 
-    &.hidden {
-      transform: translateX(calc($menu-width - $menu-button-width));
+    &.collapsed {
+      width: calc($menu-button-width + (2 * 8px));
+    }
+
+    &__top {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      width: 100%;
+      height: 5dvh;
+      padding: 8px;
+    }
+
+    &__button {
+      padding: 0;
+      border-radius: 4px;
+      border: black solid 2px;
+
+      img {
+        transition: transform ease-in-out 200ms;
+        transform: rotate(270deg);
+
+        &.rotate {
+          transform: rotate(0);
+        }
+      }
     }
   }
 }

@@ -1,6 +1,10 @@
 <span>Click counter: {{ heroPolygonService.clickCounter$ | async }}</span>
 
-<aside class="menu-container" [ngClass]="{ hidden: !menuService.showMenu() }">
-  <button class="menu-container__button" aria-label="open menu" role="switch" [attr.aria-pressed]="!menuService.showMenu()" (click)="toggleMenu()">Press me</button>
+<aside class="menu-container" [ngClass]="{ collapsed: !menuService.showMenu() }">
+  <div class="menu-container__top">
+    <button class="menu-container__button" aria-label="open menu" role="switch" [attr.aria-pressed]="!menuService.showMenu()" (click)="toggleMenu()">
+      <img [ngClass]="{ rotate: !menuService.showMenu() }" src="/assets/icons/menu-icon.svg" alt="menu icon" aria-hidden="true" height="28" width="28">
+    </button>
+  </div>
   <clicker-menu></clicker-menu>
 </aside>
