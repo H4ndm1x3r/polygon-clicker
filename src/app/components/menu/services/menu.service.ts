@@ -15,8 +15,11 @@ export class MenuService {
 
     if (isBrowser) {
       const storedValue = this.cookieService.get(COOKIE_KEY);
+
+      if (storedValue) {
+        this.showMenu.set(JSON.parse(storedValue));
+      }
   
-      this.showMenu.set(JSON.parse(storedValue));
   
       effect(() => this.cookieService.set(COOKIE_KEY, `${this.showMenu()}`));
     }
