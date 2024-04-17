@@ -5,5 +5,5 @@ export class MouseClickService {
   private readonly baseValue = signal(1);
   private readonly multiplier = computed(() => 2);
 
-  public readonly value = signal(this.baseValue() * this.multiplier());
+  public readonly value = computed(() => this.baseValue() * this.multiplier());
 }
